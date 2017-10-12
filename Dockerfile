@@ -57,7 +57,7 @@ RUN yum install -y "perl(Crypt::Eksblowfish::Bcrypt)" && \
     yum install -y "perl-DateTime" 
 
 # RPMインストール
-ENV OTRS_RPM=otrs-6.0.0.beta2-01.noarch.rpm
+ENV OTRS_RPM=otrs-6.0.0.beta3-01.noarch.rpm
 RUN curl -o /$OTRS_RPM http://ftp.otrs.org/pub/otrs/RPMS/rhel/7/$OTRS_RPM && \
     yum install -y $OTRS_RPM && \
     rm /$OTRS_RPM

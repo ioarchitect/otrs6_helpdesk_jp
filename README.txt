@@ -2,7 +2,7 @@
 
 現状ベータバージョンですので正式版公開前の事前調査やバージョンアップ計画前の検証などの用途にご利用ください。
 
-OTRS 6.0.0 helpdesk (OTRS6) Beta 2
+OTRS 6.0.0 helpdesk (OTRS6) Beta 3
 Mysql 5.7.19
 
 基本的にはioarchitectjp/otrs5_helpdesk_jpのOTRSのバージョンを5から6に上げたものです。
