@@ -7,7 +7,7 @@ no warnings 'redefine'; ## no critic
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
-$Self->{'CurrentDeploymentID'} = '1';
+$Self->{'CurrentDeploymentID'} = '2';
 $Self->{'ACL::CacheTTL'} =  '3600';
 $Self->{'ACLKeysLevel1Change'} =  {
   'Possible' => 'Possible',
@@ -104,7 +104,7 @@ $Self->{'ACLKeysLevel3::Actions'}->{'100-Default'} =  [
 $Self->{'AdminCustomerCompany::RunInitialWildcardSearch'} =  '1';
 $Self->{'AdminCustomerUser::RunInitialWildcardSearch'} =  '1';
 $Self->{'AdminCustomerUser::UseAutoComplete'} =  0;
-$Self->{'AdminEmail'} =  'admin@example.com';
+$Self->{'AdminEmail'} =  'support@<OTRS_CONFIG_FQDN>';
 $Self->{'AdminSelectBox::AllowDatabaseModification'} =  0;
 $Self->{'AgentAppointmentEdit::Location::Link'}->{'1-GoogleMaps'} =  {
   'CSSClass' => 'GoogleMaps',
@@ -507,14 +507,14 @@ $Self->{'AgentLogoCustom'}->{'ivory'} =  {
 };
 $Self->{'AgentLogoCustom'}->{'ivory-slim'} =  {
   'StyleHeight' => '45px',
-  'StyleRight' => '5px',
+  'StyleRight' => '45px',
   'StyleTop' => '10px',
   'StyleWidth' => '220px',
   'URL' => 'skins/Agent/default/img/logo_bg.png'
 };
 $Self->{'AgentLogoCustom'}->{'slim'} =  {
   'StyleHeight' => '45px',
-  'StyleRight' => '5px',
+  'StyleRight' => '45px',
   'StyleTop' => '10px',
   'StyleWidth' => '220px',
   'URL' => 'skins/Agent/default/img/logo_bg.png'
@@ -1884,7 +1884,7 @@ $Self->{'DefaultUsedLanguages'} =  {
   'lv' => 'Latvian',
   'ms' => 'Malay',
   'nb_NO' => 'Norwegian',
-  'nl' => 'Nederlands',
+  'nl' => 'Dutch',
   'pl' => 'Polish',
   'pt' => 'Portuguese',
   'pt_BR' => 'Portuguese (Brasil)',
@@ -2207,6 +2207,7 @@ $Self->{'Frontend::CustomerUser::Item'}->{'15-OpenTickets'} =  {
   'Text' => 'Open tickets (customer)'
 };
 $Self->{'Frontend::DebugMode'} =  0;
+$Self->{'Frontend::Gravatar::DefaultImage'} =  'mm';
 $Self->{'Frontend::HeaderMetaModule'}->{'100-Refresh'} =  {
   'Module' => 'Kernel::Output::HTML::HeaderMeta::Refresh'
 };
@@ -5153,6 +5154,14 @@ $Self->{'Loader::Module::AdminOTRSBusiness'}->{'001-Framework'} =  {
     'Core.Agent.Admin.OTRSBusiness.css'
   ]
 };
+$Self->{'Loader::Module::AdminPackageManager'}->{'001-Framework'} =  {
+  'CSS' => [
+    'Core.Agent.Admin.PackageManager.css'
+  ],
+  'JavaScript' => [
+    'Core.Agent.Admin.PackageManager.js'
+  ]
+};
 $Self->{'Loader::Module::AdminPerformanceLog'}->{'001-Framework'} =  {
   'CSS' => [
     'Core.Agent.Admin.PerformanceLog.css'
@@ -6088,10 +6097,21 @@ $Self->{'PreferencesGroups'}->{'AppointmentNotificationEvent'} =  {
   'PreferenceGroup' => 'NotificationSettings',
   'Prio' => '8001'
 };
+$Self->{'PreferencesGroups'}->{'Avatar'} =  {
+  'Active' => '1',
+  'Block' => 'Avatar',
+  'Desc' => 'Change your avatar image.',
+  'Key' => 'Avatar',
+  'Label' => 'Avatar',
+  'Module' => 'Kernel::Output::HTML::Preferences::Avatar',
+  'PreferenceGroup' => 'UserProfile',
+  'Prio' => '1000'
+};
 $Self->{'PreferencesGroups'}->{'Comment'} =  {
   'Active' => '0',
   'Block' => 'Input',
   'Data' => '[% Env("UserComment") %]',
+  'Desc' => 'This is a Description for Comment on Framework.',
   'Key' => 'Comment',
   'Label' => 'Comment',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
@@ -6189,6 +6209,7 @@ $Self->{'PreferencesGroups'}->{'Language'} =  {
   'Key' => '',
   'Label' => 'Language',
   'Module' => 'Kernel::Output::HTML::Preferences::Language',
+  'NeedsReload' => '1',
   'PrefKey' => 'UserLanguage',
   'PreferenceGroup' => 'UserProfile',
   'Prio' => '1000'
@@ -6253,6 +6274,7 @@ $Self->{'PreferencesGroups'}->{'Skin'} =  {
   'Key' => '',
   'Label' => 'Skin',
   'Module' => 'Kernel::Output::HTML::Preferences::Skin',
+  'NeedsReload' => '1',
   'PrefKey' => 'UserSkin',
   'PreferenceGroup' => 'Miscellaneous',
   'Prio' => '100'
@@ -6260,11 +6282,12 @@ $Self->{'PreferencesGroups'}->{'Skin'} =  {
 $Self->{'PreferencesGroups'}->{'Theme'} =  {
   'Active' => '1',
   'Desc' => 'Select your preferred theme for OTRS.',
-  'Key' => 'Frontend theme',
+  'Key' => '',
   'Label' => 'Theme',
   'Module' => 'Kernel::Output::HTML::Preferences::Theme',
+  'NeedsReload' => '1',
   'PrefKey' => 'UserTheme',
-  'PreferenceGroup' => 'UserProfile',
+  'PreferenceGroup' => 'Miscellaneous',
   'Prio' => '3000'
 };
 $Self->{'PreferencesGroups'}->{'TicketOverviewFilterSettings'} =  {
@@ -8065,6 +8088,7 @@ $Self->{'Ticket::SearchIndex::Filters'} =  [
   '^[\':.]|[\':.]$',
   '^[^\\w]+$'
 ];
+$Self->{'Ticket::SearchIndex::ForceUnfilteredStorage'} =  0;
 $Self->{'Ticket::SearchIndex::IndexArchivedTickets'} =  0;
 $Self->{'Ticket::SearchIndex::StopWords'}->{'de'} =  [
   'aber',
