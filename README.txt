@@ -1,8 +1,8 @@
 お試し用のOTRS6 Helpdeskイメージです。
 
-現状ベータバージョンですので正式版公開前の事前調査やバージョンアップ計画前の検証などの用途にご利用ください。
+現状正式リリース前のバージョンですので正式版公開前の事前調査やバージョンアップ計画前の検証などの用途にご利用ください。
 
-OTRS 6.0.0 helpdesk (OTRS6) Beta 5
+OTRS 6.0.0 helpdesk (OTRS6) RC1
 Mysql 5.7.19
 
 基本的にはioarchitectjp/otrs5_helpdesk_jpのOTRSのバージョンを5から6に上げたものです。
