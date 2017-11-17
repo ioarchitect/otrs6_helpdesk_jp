@@ -963,7 +963,7 @@ $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketOverview'}->{'2'} =  {
   'Type' => 'Submenu'
 };
 $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketOverview'}->{'3'} =  {
-  'AccessKey' => 'M',
+  'AccessKey' => 't',
   'Block' => '',
   'Description' => 'Company Tickets.',
   'Group' => [],
@@ -3549,7 +3549,7 @@ $Self->{'Frontend::Navigation'}->{'AgentCustomerInformationCenter'}->{'2'} =  {
   'Type' => 'Menu'
 };
 $Self->{'Frontend::Navigation'}->{'AgentCustomerUserInformationCenter'}->{'1'} =  {
-  'AccessKey' => 'u',
+  'AccessKey' => 'y',
   'Block' => 'ItemArea',
   'Description' => '',
   'Group' => [],
@@ -3717,7 +3717,7 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketSearch'}->{'1'} =  {
   'Type' => ''
 };
 $Self->{'Frontend::Navigation'}->{'AgentTicketService'}->{'1'} =  {
-  'AccessKey' => 'O',
+  'AccessKey' => 'i',
   'Block' => '',
   'Description' => 'Overview of all open Tickets.',
   'Group' => [],
@@ -6141,8 +6141,8 @@ $Self->{'PreferencesGroups'}->{'CommunicationLogPageShown'} =  {
 $Self->{'PreferencesGroups'}->{'CreateNextMask'} =  {
   'Active' => '1',
   'Data' => {
-    '0' => 'CreateTicket',
-    'AgentTicketZoom' => 'TicketZoom'
+    '0' => 'Create Ticket',
+    'AgentTicketZoom' => 'Ticket Zoom'
   },
   'DataSelected' => '',
   'Desc' => 'Configure which screen should be shown after a new ticket has been created.',
