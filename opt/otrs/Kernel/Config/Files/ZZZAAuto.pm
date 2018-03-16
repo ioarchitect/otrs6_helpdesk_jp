@@ -7,7 +7,7 @@ no warnings 'redefine'; ## no critic
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
-$Self->{'CurrentDeploymentID'} = '1';
+$Self->{'CurrentDeploymentID'} = '2';
 $Self->{'ACL::CacheTTL'} =  '3600';
 $Self->{'ACLKeysLevel1Change'} =  {
   'Possible' => 'Possible',
@@ -104,7 +104,7 @@ $Self->{'ACLKeysLevel3::Actions'}->{'100-Default'} =  [
 $Self->{'AdminCustomerCompany::RunInitialWildcardSearch'} =  '1';
 $Self->{'AdminCustomerUser::RunInitialWildcardSearch'} =  '1';
 $Self->{'AdminCustomerUser::UseAutoComplete'} =  0;
-$Self->{'AdminEmail'} =  'admin@example.com';
+$Self->{'AdminEmail'} =  'support@<OTRS_CONFIG_FQDN>';
 $Self->{'AdminSelectBox::AllowDatabaseModification'} =  0;
 $Self->{'AgentAppointmentEdit::Location::Link'}->{'1-GoogleMaps'} =  {
   'CSSClass' => 'GoogleMaps',
@@ -507,14 +507,14 @@ $Self->{'AgentLogoCustom'}->{'ivory'} =  {
 };
 $Self->{'AgentLogoCustom'}->{'ivory-slim'} =  {
   'StyleHeight' => '45px',
-  'StyleRight' => '5px',
+  'StyleRight' => '45px',
   'StyleTop' => '10px',
   'StyleWidth' => '220px',
   'URL' => 'skins/Agent/default/img/logo_bg.png'
 };
 $Self->{'AgentLogoCustom'}->{'slim'} =  {
   'StyleHeight' => '45px',
-  'StyleRight' => '5px',
+  'StyleRight' => '45px',
   'StyleTop' => '10px',
   'StyleWidth' => '220px',
   'URL' => 'skins/Agent/default/img/logo_bg.png'
@@ -528,7 +528,7 @@ $Self->{'AgentPreferencesGroups'} =  [
     'Prio' => '1000'
   },
   {
-    'Description' => 'Choose which notifications would you like to receive.',
+    'Description' => 'Choose which notifications you\'d like to receive.',
     'Icon' => 'fa-envelope',
     'Key' => 'NotificationSettings',
     'Name' => 'Notification Settings',
@@ -784,6 +784,7 @@ $Self->{'CommunicationLog::Transport'}->{'Email'} =  {
   'Module' => 'Kernel::System::CommunicationLog::Transport::Email',
   'Name' => 'Email'
 };
+$Self->{'ConfigImportAllowed'} =  '1';
 $Self->{'ConfigLevel'} =  '100';
 $Self->{'Customer::AuthModule'} =  'Kernel::System::CustomerAuth::DB';
 $Self->{'Customer::AuthModule::DB::CryptType'} =  'sha2';
@@ -923,6 +924,21 @@ $Self->{'CustomerFrontend::Module'}->{'PictureUpload'} =  {
 $Self->{'CustomerFrontend::NavBarModule'}->{'10-CustomerTicketProcesses'} =  {
   'Module' => 'Kernel::Output::HTML::NavBar::CustomerTicketProcess'
 };
+$Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketMessage'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'n',
+    'Block' => '',
+    'Description' => 'Create new Ticket.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=CustomerTicketMessage',
+    'LinkOption' => '',
+    'Name' => 'New Ticket',
+    'NavBar' => 'Ticket',
+    'Prio' => '100',
+    'Type' => 'Submenu'
+  }
+];
 $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketMessage'}->{'1'} =  {
   'AccessKey' => 'n',
   'Block' => '',
@@ -936,6 +952,47 @@ $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketMessage'}->{'1'} =  {
   'Prio' => '100',
   'Type' => 'Submenu'
 };
+$Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketOverview'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'm',
+    'Block' => '',
+    'Description' => 'Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=CustomerTicketOverview;Subaction=MyTickets',
+    'LinkOption' => '',
+    'Name' => 'Tickets',
+    'NavBar' => 'Ticket',
+    'Prio' => '100',
+    'Type' => 'Menu'
+  },
+  {
+    'AccessKey' => '',
+    'Block' => '',
+    'Description' => 'My Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=CustomerTicketOverview;Subaction=MyTickets',
+    'LinkOption' => '',
+    'Name' => 'My Tickets',
+    'NavBar' => 'Ticket',
+    'Prio' => '110',
+    'Type' => 'Submenu'
+  },
+  {
+    'AccessKey' => 't',
+    'Block' => '',
+    'Description' => 'Company Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=CustomerTicketOverview;Subaction=CompanyTickets',
+    'LinkOption' => '',
+    'Name' => 'Company Tickets',
+    'NavBar' => 'Ticket',
+    'Prio' => '120',
+    'Type' => 'Submenu'
+  }
+];
 $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketOverview'}->{'1'} =  {
   'AccessKey' => 'm',
   'Block' => '',
@@ -975,6 +1032,21 @@ $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketOverview'}->{'3'} =  {
   'Prio' => '120',
   'Type' => 'Submenu'
 };
+$Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketProcess'}->{'002-ProcessManagement'} =  [
+  {
+    'AccessKey' => 'o',
+    'Block' => '',
+    'Description' => 'Create new process ticket.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=CustomerTicketProcess',
+    'LinkOption' => '',
+    'Name' => 'New process ticket',
+    'NavBar' => 'Ticket',
+    'Prio' => '220',
+    'Type' => 'Submenu'
+  }
+];
 $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketProcess'}->{'1'} =  {
   'AccessKey' => 'o',
   'Block' => '',
@@ -988,6 +1060,21 @@ $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketProcess'}->{'1'} =  {
   'Prio' => '220',
   'Type' => 'Submenu'
 };
+$Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketSearch'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 's',
+    'Block' => '',
+    'Description' => 'Search.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=CustomerTicketSearch',
+    'LinkOption' => '',
+    'Name' => 'Search',
+    'NavBar' => 'Ticket',
+    'Prio' => '300',
+    'Type' => 'Submenu'
+  }
+];
 $Self->{'CustomerFrontend::Navigation'}->{'CustomerTicketSearch'}->{'1'} =  {
   'AccessKey' => 's',
   'Block' => '',
@@ -1757,7 +1844,7 @@ $Self->{'DashboardBackend'}->{'0390-UserOutOfOffice'} =  {
   'Block' => 'ContentSmall',
   'CacheTTLLocal' => '5',
   'Default' => '1',
-  'Description' => '',
+  'Description' => 'Out of Office users.',
   'Group' => '',
   'Limit' => '10',
   'Mandatory' => '0',
@@ -1769,7 +1856,7 @@ $Self->{'DashboardBackend'}->{'0400-UserOnline'} =  {
   'Block' => 'ContentSmall',
   'CacheTTLLocal' => '5',
   'Default' => '0',
-  'Description' => '',
+  'Description' => 'Logged in users.',
   'Filter' => 'Agent',
   'Group' => '',
   'Limit' => '10',
@@ -1783,7 +1870,7 @@ $Self->{'DashboardBackend'}->{'0405-News'} =  {
   'Block' => 'ContentSmall',
   'CacheTTL' => '360',
   'Default' => '1',
-  'Description' => '',
+  'Description' => 'News about OTRS.',
   'Group' => '',
   'Limit' => '6',
   'Mandatory' => '0',
@@ -1794,7 +1881,7 @@ $Self->{'DashboardBackend'}->{'0500-AppointmentCalendar'} =  {
   'Block' => 'ContentSmall',
   'CacheTTLLocal' => '5',
   'Default' => '0',
-  'Description' => '',
+  'Description' => 'Appointments',
   'Filter' => 'Today',
   'Group' => '',
   'IdleMinutes' => '60',
@@ -1884,7 +1971,7 @@ $Self->{'DefaultUsedLanguages'} =  {
   'lv' => 'Latvian',
   'ms' => 'Malay',
   'nb_NO' => 'Norwegian',
-  'nl' => 'Nederlands',
+  'nl' => 'Dutch',
   'pl' => 'Polish',
   'pt' => 'Portuguese',
   'pt_BR' => 'Portuguese (Brasil)',
@@ -2207,6 +2294,7 @@ $Self->{'Frontend::CustomerUser::Item'}->{'15-OpenTickets'} =  {
   'Text' => 'Open tickets (customer)'
 };
 $Self->{'Frontend::DebugMode'} =  0;
+$Self->{'Frontend::Gravatar::DefaultImage'} =  'mm';
 $Self->{'Frontend::HeaderMetaModule'}->{'100-Refresh'} =  {
   'Module' => 'Kernel::Output::HTML::HeaderMeta::Refresh'
 };
@@ -3078,7 +3166,7 @@ $Self->{'Frontend::Module'}->{'AgentSplitSelection'} =  {
   'Title' => ''
 };
 $Self->{'Frontend::Module'}->{'AgentStatistics'} =  {
-  'Description' => '',
+  'Description' => 'Agent Statistics.',
   'Group' => [
     'stats'
   ],
@@ -3394,6 +3482,23 @@ $Self->{'Frontend::NavBarModule'}->{'6-CustomerCompany'} =  {
 $Self->{'Frontend::NavBarModule'}->{'7-AgentTicketService'} =  {
   'Module' => 'Kernel::Output::HTML::NavBar::AgentTicketService'
 };
+$Self->{'Frontend::Navigation'}->{'Admin'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => 'a',
+    'Block' => 'ItemArea',
+    'Description' => 'Admin modules overview.',
+    'Group' => [
+      'admin'
+    ],
+    'GroupRo' => [],
+    'Link' => 'Action=Admin',
+    'LinkOption' => '',
+    'Name' => 'Admin',
+    'NavBar' => 'Admin',
+    'Prio' => '10000',
+    'Type' => 'Menu'
+  }
+];
 $Self->{'Frontend::Navigation'}->{'Admin'}->{'1'} =  {
   'AccessKey' => 'a',
   'Block' => 'ItemArea',
@@ -3409,6 +3514,23 @@ $Self->{'Frontend::Navigation'}->{'Admin'}->{'1'} =  {
   'Prio' => '10000',
   'Type' => 'Menu'
 };
+$Self->{'Frontend::Navigation'}->{'AdminAppointmentCalendarManage'}->{'002-Calendar'} =  [
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Manage different calendars.',
+    'Group' => [
+      'admin'
+    ],
+    'GroupRo' => [],
+    'Link' => 'Action=AdminAppointmentCalendarManage',
+    'LinkOption' => '',
+    'Name' => 'Manage Calendars',
+    'NavBar' => 'Calendar',
+    'Prio' => '9000',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AdminAppointmentCalendarManage'}->{'1'} =  {
   'AccessKey' => '',
   'Block' => 'ItemArea',
@@ -3424,6 +3546,24 @@ $Self->{'Frontend::Navigation'}->{'AdminAppointmentCalendarManage'}->{'1'} =  {
   'Prio' => '9000',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AdminCustomerCompany'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Create and manage customers.',
+    'Group' => [
+      'admin',
+      'users'
+    ],
+    'GroupRo' => [],
+    'Link' => 'Action=AdminCustomerCompany;Nav=Agent',
+    'LinkOption' => '',
+    'Name' => 'Customer Administration',
+    'NavBar' => 'Customers',
+    'Prio' => '9100',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AdminCustomerCompany'}->{'1'} =  {
   'AccessKey' => '',
   'Block' => 'ItemArea',
@@ -3440,6 +3580,24 @@ $Self->{'Frontend::Navigation'}->{'AdminCustomerCompany'}->{'1'} =  {
   'Prio' => '9100',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AdminCustomerUser'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Create and manage customer users.',
+    'Group' => [
+      'admin',
+      'users'
+    ],
+    'GroupRo' => [],
+    'Link' => 'Action=AdminCustomerUser;Nav=Agent',
+    'LinkOption' => '',
+    'Name' => 'Customer User Administration',
+    'NavBar' => 'Customers',
+    'Prio' => '9000',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AdminCustomerUser'}->{'1'} =  {
   'AccessKey' => '',
   'Block' => 'ItemArea',
@@ -3456,6 +3614,21 @@ $Self->{'Frontend::Navigation'}->{'AdminCustomerUser'}->{'1'} =  {
   'Prio' => '9000',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentAppointmentAgendaOverview'}->{'002-Calendar'} =  [
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Overview of all appointments.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentAppointmentAgendaOverview',
+    'LinkOption' => '',
+    'Name' => 'Agenda Overview',
+    'NavBar' => 'Calendar',
+    'Prio' => '6500',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentAppointmentAgendaOverview'}->{'1'} =  {
   'AccessKey' => '',
   'Block' => 'ItemArea',
@@ -3469,6 +3642,60 @@ $Self->{'Frontend::Navigation'}->{'AgentAppointmentAgendaOverview'}->{'1'} =  {
   'Prio' => '6500',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentAppointmentCalendarOverview'}->{'002-Calendar'} =  [
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Appointment Calendar overview page.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentAppointmentCalendarOverview',
+    'LinkOption' => '',
+    'Name' => 'Calendar',
+    'NavBar' => 'Calendar',
+    'Prio' => '75',
+    'Type' => 'Menu'
+  },
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Appointment Calendar overview page.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentAppointmentCalendarOverview',
+    'LinkOption' => '',
+    'Name' => 'Calendar Overview',
+    'NavBar' => 'Calendar',
+    'Prio' => '6000',
+    'Type' => ''
+  },
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Resource Overview (OTRS Business Solution™)',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentAppointmentCalendarOverview',
+    'LinkOption' => 'class="OTRSBusinessRequired"',
+    'Name' => 'Resource Overview (OTRS Business Solution™)',
+    'NavBar' => 'Calendar',
+    'Prio' => '7000',
+    'Type' => ''
+  },
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Create new appointment.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentAppointmentCalendarOverview;Subaction=AppointmentCreate',
+    'LinkOption' => '',
+    'Name' => 'New Appointment',
+    'NavBar' => 'Calendar',
+    'Prio' => '8000',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentAppointmentCalendarOverview'}->{'1'} =  {
   'AccessKey' => '',
   'Block' => 'ItemArea',
@@ -3521,6 +3748,34 @@ $Self->{'Frontend::Navigation'}->{'AgentAppointmentCalendarOverview'}->{'4'} =  
   'Prio' => '8000',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentCustomerInformationCenter'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => 'c',
+    'Block' => 'ItemArea',
+    'Description' => 'Customer Information Center search.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentCustomerInformationCenter',
+    'LinkOption' => 'onclick="window.setTimeout(function(){Core.Agent.CustomerInformationCenterSearch.OpenSearchDialog();}, 0); return false;"',
+    'Name' => 'Customer Information Center',
+    'NavBar' => 'Customers',
+    'Prio' => '50',
+    'Type' => ''
+  },
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Customer Information Center search.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentCustomerInformationCenter',
+    'LinkOption' => '',
+    'Name' => 'Customers',
+    'NavBar' => 'Customers',
+    'Prio' => '60',
+    'Type' => 'Menu'
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentCustomerInformationCenter'}->{'1'} =  {
   'AccessKey' => 'c',
   'Block' => 'ItemArea',
@@ -3547,6 +3802,21 @@ $Self->{'Frontend::Navigation'}->{'AgentCustomerInformationCenter'}->{'2'} =  {
   'Prio' => '60',
   'Type' => 'Menu'
 };
+$Self->{'Frontend::Navigation'}->{'AgentCustomerUserInformationCenter'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => 'y',
+    'Block' => 'ItemArea',
+    'Description' => 'Customer User Information Center search.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentCustomerUserInformationCenter',
+    'LinkOption' => 'onclick="window.setTimeout(function(){Core.Agent.CustomerUserInformationCenterSearch.OpenSearchDialog();}, 0); return false;"',
+    'Name' => 'Customer User Information Center',
+    'NavBar' => 'Customers',
+    'Prio' => '55',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentCustomerUserInformationCenter'}->{'1'} =  {
   'AccessKey' => 'u',
   'Block' => 'ItemArea',
@@ -3560,6 +3830,21 @@ $Self->{'Frontend::Navigation'}->{'AgentCustomerUserInformationCenter'}->{'1'} =
   'Prio' => '55',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentDashboard'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => 'd',
+    'Block' => 'ItemArea',
+    'Description' => 'Dashboard overview.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentDashboard',
+    'LinkOption' => '',
+    'Name' => 'Dashboard',
+    'NavBar' => 'Dashboard',
+    'Prio' => '50',
+    'Type' => 'Menu'
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentDashboard'}->{'1'} =  {
   'AccessKey' => 'd',
   'Block' => 'ItemArea',
@@ -3573,6 +3858,59 @@ $Self->{'Frontend::Navigation'}->{'AgentDashboard'}->{'1'} =  {
   'Prio' => '50',
   'Type' => 'Menu'
 };
+$Self->{'Frontend::Navigation'}->{'AgentStatistics'}->{'001-Framework'} =  [
+  {
+    'AccessKey' => '',
+    'Block' => 'ItemArea',
+    'Description' => 'Statistics overview.',
+    'Group' => [
+      'stats'
+    ],
+    'GroupRo' => [
+      'stats'
+    ],
+    'Link' => 'Action=AgentStatistics;Subaction=Overview',
+    'LinkOption' => '',
+    'Name' => 'Reports',
+    'NavBar' => 'Reports',
+    'Prio' => '8500',
+    'Type' => 'Menu'
+  },
+  {
+    'AccessKey' => '',
+    'Block' => '',
+    'Description' => 'Statistic Reports overview.',
+    'Group' => [
+      'stats'
+    ],
+    'GroupRo' => [
+      'stats'
+    ],
+    'Link' => 'Action=AgentStatisticsReports;Subaction=Overview',
+    'LinkOption' => 'class="OTRSBusinessRequired"',
+    'Name' => 'Reports (OTRS Business Solution™)',
+    'NavBar' => 'Reports',
+    'Prio' => '100',
+    'Type' => ''
+  },
+  {
+    'AccessKey' => '',
+    'Block' => '',
+    'Description' => 'Statistics overview.',
+    'Group' => [
+      'stats'
+    ],
+    'GroupRo' => [
+      'stats'
+    ],
+    'Link' => 'Action=AgentStatistics;Subaction=Overview',
+    'LinkOption' => '',
+    'Name' => 'Statistics',
+    'NavBar' => 'Reports',
+    'Prio' => '200',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentStatistics'}->{'1'} =  {
   'AccessKey' => '',
   'Block' => 'ItemArea',
@@ -3624,6 +3962,21 @@ $Self->{'Frontend::Navigation'}->{'AgentStatistics'}->{'3'} =  {
   'Prio' => '200',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketEmail'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'm',
+    'Block' => '',
+    'Description' => 'Create new email ticket and send this out (outbound).',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketEmail',
+    'LinkOption' => '',
+    'Name' => 'New email ticket',
+    'NavBar' => 'Ticket',
+    'Prio' => '210',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketEmail'}->{'1'} =  {
   'AccessKey' => 'm',
   'Block' => '',
@@ -3637,6 +3990,21 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketEmail'}->{'1'} =  {
   'Prio' => '210',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketEscalationView'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'e',
+    'Block' => '',
+    'Description' => 'Overview Escalated Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketEscalationView',
+    'LinkOption' => '',
+    'Name' => 'Escalation view',
+    'NavBar' => 'Ticket',
+    'Prio' => '120',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketEscalationView'}->{'1'} =  {
   'AccessKey' => 'e',
   'Block' => '',
@@ -3650,6 +4018,21 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketEscalationView'}->{'1'} =  {
   'Prio' => '120',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketPhone'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'n',
+    'Block' => '',
+    'Description' => 'Create new phone ticket (inbound).',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketPhone',
+    'LinkOption' => '',
+    'Name' => 'New phone ticket',
+    'NavBar' => 'Ticket',
+    'Prio' => '200',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketPhone'}->{'1'} =  {
   'AccessKey' => 'n',
   'Block' => '',
@@ -3663,6 +4046,21 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketPhone'}->{'1'} =  {
   'Prio' => '200',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketProcess'}->{'002-ProcessManagement'} =  [
+  {
+    'AccessKey' => 'p',
+    'Block' => '',
+    'Description' => 'Create New process ticket.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketProcess',
+    'LinkOption' => '',
+    'Name' => 'New process ticket',
+    'NavBar' => 'Ticket',
+    'Prio' => '220',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketProcess'}->{'1'} =  {
   'AccessKey' => 'p',
   'Block' => '',
@@ -3676,6 +4074,34 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketProcess'}->{'1'} =  {
   'Prio' => '220',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketQueue'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'o',
+    'Block' => '',
+    'Description' => 'Overview of all Tickets per assigned Queue.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketQueue',
+    'LinkOption' => '',
+    'Name' => 'Queue view',
+    'NavBar' => 'Ticket',
+    'Prio' => '100',
+    'Type' => ''
+  },
+  {
+    'AccessKey' => 't',
+    'Block' => 'ItemArea',
+    'Description' => 'Overview of all Tickets per assigned Queue.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketQueue',
+    'LinkOption' => '',
+    'Name' => 'Tickets',
+    'NavBar' => 'Ticket',
+    'Prio' => '200',
+    'Type' => 'Menu'
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketQueue'}->{'1'} =  {
   'AccessKey' => 'o',
   'Block' => '',
@@ -3702,6 +4128,21 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketQueue'}->{'2'} =  {
   'Prio' => '200',
   'Type' => 'Menu'
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketSearch'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 's',
+    'Block' => '',
+    'Description' => 'Search Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketSearch',
+    'LinkOption' => 'onclick="window.setTimeout(function(){Core.Agent.Search.OpenSearchDialog(\'AgentTicketSearch\');}, 0); return false;"',
+    'Name' => 'Search',
+    'NavBar' => 'Ticket',
+    'Prio' => '300',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketSearch'}->{'1'} =  {
   'AccessKey' => 's',
   'Block' => '',
@@ -3715,6 +4156,21 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketSearch'}->{'1'} =  {
   'Prio' => '300',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketService'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'i',
+    'Block' => '',
+    'Description' => 'Overview of all open Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketService',
+    'LinkOption' => '',
+    'Name' => 'Service view',
+    'NavBar' => 'Ticket',
+    'Prio' => '105',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketService'}->{'1'} =  {
   'AccessKey' => 'O',
   'Block' => '',
@@ -3728,6 +4184,21 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketService'}->{'1'} =  {
   'Prio' => '105',
   'Type' => ''
 };
+$Self->{'Frontend::Navigation'}->{'AgentTicketStatusView'}->{'002-Ticket'} =  [
+  {
+    'AccessKey' => 'v',
+    'Block' => '',
+    'Description' => 'Overview of all open Tickets.',
+    'Group' => [],
+    'GroupRo' => [],
+    'Link' => 'Action=AgentTicketStatusView',
+    'LinkOption' => '',
+    'Name' => 'Status view',
+    'NavBar' => 'Ticket',
+    'Prio' => '110',
+    'Type' => ''
+  }
+];
 $Self->{'Frontend::Navigation'}->{'AgentTicketStatusView'}->{'1'} =  {
   'AccessKey' => 'v',
   'Block' => '',
@@ -3743,7 +4214,7 @@ $Self->{'Frontend::Navigation'}->{'AgentTicketStatusView'}->{'1'} =  {
 };
 $Self->{'Frontend::NavigationModule'}->{'Admin'} =  {
   'Block' => '',
-  'Description' => '',
+  'Description' => 'Admin modules overview.',
   'Group' => [
     'admin'
   ],
@@ -5153,6 +5624,14 @@ $Self->{'Loader::Module::AdminOTRSBusiness'}->{'001-Framework'} =  {
     'Core.Agent.Admin.OTRSBusiness.css'
   ]
 };
+$Self->{'Loader::Module::AdminPackageManager'}->{'001-Framework'} =  {
+  'CSS' => [
+    'Core.Agent.Admin.PackageManager.css'
+  ],
+  'JavaScript' => [
+    'Core.Agent.Admin.PackageManager.js'
+  ]
+};
 $Self->{'Loader::Module::AdminPerformanceLog'}->{'001-Framework'} =  {
   'CSS' => [
     'Core.Agent.Admin.PerformanceLog.css'
@@ -5626,7 +6105,9 @@ $Self->{'Loader::Module::AgentTicketLockedView'}->{'002-Ticket'} =  {
   ],
   'JavaScript' => [
     'Core.UI.AllocationList.js',
-    'Core.Agent.TableFilters.js'
+    'Core.Agent.TableFilters.js',
+    'Core.Agent.Overview.js',
+    'Core.Agent.TicketSplit.js'
   ]
 };
 $Self->{'Loader::Module::AgentTicketMerge'}->{'002-Ticket'} =  {
@@ -5775,7 +6256,9 @@ $Self->{'Loader::Module::AgentTicketWatchView'}->{'002-Ticket'} =  {
   ],
   'JavaScript' => [
     'Core.UI.AllocationList.js',
-    'Core.Agent.TableFilters.js'
+    'Core.Agent.TableFilters.js',
+    'Core.Agent.Overview.js',
+    'Core.Agent.TicketSplit.js'
   ]
 };
 $Self->{'Loader::Module::AgentTicketZoom'}->{'002-Ticket'} =  {
@@ -6088,10 +6571,21 @@ $Self->{'PreferencesGroups'}->{'AppointmentNotificationEvent'} =  {
   'PreferenceGroup' => 'NotificationSettings',
   'Prio' => '8001'
 };
+$Self->{'PreferencesGroups'}->{'Avatar'} =  {
+  'Active' => '1',
+  'Block' => 'Avatar',
+  'Desc' => 'Change your avatar image.',
+  'Key' => 'Avatar',
+  'Label' => 'Avatar',
+  'Module' => 'Kernel::Output::HTML::Preferences::Avatar',
+  'PreferenceGroup' => 'UserProfile',
+  'Prio' => '1000'
+};
 $Self->{'PreferencesGroups'}->{'Comment'} =  {
   'Active' => '0',
   'Block' => 'Input',
   'Data' => '[% Env("UserComment") %]',
+  'Desc' => 'This is a Description for Comment on Framework.',
   'Key' => 'Comment',
   'Label' => 'Comment',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
@@ -6111,7 +6605,8 @@ $Self->{'PreferencesGroups'}->{'CommunicationLogPageShown'} =  {
     '50' => '50'
   },
   'DataSelected' => '25',
-  'Key' => 'Communication log limit per page for CommunicationLog Overview',
+  'Desc' => 'Communication log limit per page for Communication Log Overview.',
+  'Key' => '',
   'Label' => 'CommunicationLog Overview Limit',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
   'PrefKey' => 'AdminCommunicationLogPageShown',
@@ -6121,8 +6616,8 @@ $Self->{'PreferencesGroups'}->{'CommunicationLogPageShown'} =  {
 $Self->{'PreferencesGroups'}->{'CreateNextMask'} =  {
   'Active' => '1',
   'Data' => {
-    '0' => 'CreateTicket',
-    'AgentTicketZoom' => 'TicketZoom'
+    '0' => 'Create Ticket',
+    'AgentTicketZoom' => 'Ticket Zoom'
   },
   'DataSelected' => '',
   'Desc' => 'Configure which screen should be shown after a new ticket has been created.',
@@ -6163,7 +6658,8 @@ $Self->{'PreferencesGroups'}->{'DynamicFieldsOverviewPageShown'} =  {
     '35' => '35'
   },
   'DataSelected' => '25',
-  'Key' => 'Dynamic fields limit per page for Dynamic Fields Overview',
+  'Desc' => 'Dynamic fields limit per page for Dynamic Fields Overview.',
+  'Key' => '',
   'Label' => 'Dynamic Fields Overview Limit',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
   'PrefKey' => 'AdminDynamicFieldsOverviewPageShown',
@@ -6189,6 +6685,7 @@ $Self->{'PreferencesGroups'}->{'Language'} =  {
   'Key' => '',
   'Label' => 'Language',
   'Module' => 'Kernel::Output::HTML::Preferences::Language',
+  'NeedsReload' => '1',
   'PrefKey' => 'UserLanguage',
   'PreferenceGroup' => 'UserProfile',
   'Prio' => '1000'
@@ -6253,6 +6750,7 @@ $Self->{'PreferencesGroups'}->{'Skin'} =  {
   'Key' => '',
   'Label' => 'Skin',
   'Module' => 'Kernel::Output::HTML::Preferences::Skin',
+  'NeedsReload' => '1',
   'PrefKey' => 'UserSkin',
   'PreferenceGroup' => 'Miscellaneous',
   'Prio' => '100'
@@ -6260,16 +6758,18 @@ $Self->{'PreferencesGroups'}->{'Skin'} =  {
 $Self->{'PreferencesGroups'}->{'Theme'} =  {
   'Active' => '1',
   'Desc' => 'Select your preferred theme for OTRS.',
-  'Key' => 'Frontend theme',
+  'Key' => '',
   'Label' => 'Theme',
   'Module' => 'Kernel::Output::HTML::Preferences::Theme',
+  'NeedsReload' => '1',
   'PrefKey' => 'UserTheme',
-  'PreferenceGroup' => 'UserProfile',
+  'PreferenceGroup' => 'Miscellaneous',
   'Prio' => '3000'
 };
 $Self->{'PreferencesGroups'}->{'TicketOverviewFilterSettings'} =  {
   'Active' => '0',
-  'Key' => 'Column ticket filters for Ticket Overviews type "Small".',
+  'Desc' => 'Column ticket filters for Ticket Overviews type "Small".',
+  'Key' => '',
   'Label' => 'Enabled filters.',
   'Module' => 'Kernel::Output::HTML::Preferences::ColumnFilters',
   'PrefKey' => 'UserFilterColumnsEnabled',
@@ -6287,7 +6787,8 @@ $Self->{'PreferencesGroups'}->{'TicketOverviewMediumPageShown'} =  {
     '35' => '35'
   },
   'DataSelected' => '20',
-  'Key' => 'Ticket limit per page for Ticket Overview "Medium"',
+  'Desc' => 'Ticket limit per page for Ticket Overview "Medium".',
+  'Key' => '',
   'Label' => 'Ticket Overview "Medium" Limit',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
   'PrefKey' => 'UserTicketOverviewMediumPageShown',
@@ -6305,7 +6806,8 @@ $Self->{'PreferencesGroups'}->{'TicketOverviewPreviewPageShown'} =  {
     '35' => '35'
   },
   'DataSelected' => '15',
-  'Key' => 'Ticket limit per page for Ticket Overview "Preview"',
+  'Desc' => 'Ticket limit per page for Ticket Overview "Preview".',
+  'Key' => '',
   'Label' => 'Ticket Overview "Preview" Limit',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
   'PrefKey' => 'UserTicketOverviewPreviewPageShown',
@@ -6323,7 +6825,8 @@ $Self->{'PreferencesGroups'}->{'TicketOverviewSmallPageShown'} =  {
     '35' => '35'
   },
   'DataSelected' => '25',
-  'Key' => 'Ticket limit per page for Ticket Overview "Small"',
+  'Desc' => 'Ticket limit per page for Ticket Overview "Small".',
+  'Key' => '',
   'Label' => 'Ticket Overview "Small" Limit',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
   'PrefKey' => 'UserTicketOverviewSmallPageShown',
@@ -6580,6 +7083,11 @@ $Self->{'Ticket::EventModulePost'}->{'9900-GenericInterface'} =  {
   'Module' => 'Kernel::GenericInterface::Event::Handler',
   'Transaction' => '1'
 };
+$Self->{'Ticket::EventModulePost'}->{'9990-EscalationIndex'} =  {
+  'Event' => 'TicketSLAUpdate|TicketQueueUpdate|TicketStateUpdate|TicketCreate|ArticleCreate|TicketDynamicFieldUpdate|TicketTypeUpdate|TicketServiceUpdate|TicketCustomerUpdate|TicketPriorityUpdate|TicketMerge',
+  'Module' => 'Kernel::System::Ticket::Event::TicketEscalationIndex',
+  'Transaction' => '1'
+};
 $Self->{'Ticket::Frontend::AccountTime'} =  '1';
 $Self->{'Ticket::Frontend::AgentTicketBounce'}->{'Permission'} =  'bounce';
 $Self->{'Ticket::Frontend::AgentTicketBounce'}->{'RequiredLock'} =  '1';
@@ -6677,7 +7185,7 @@ $Self->{'Ticket::Frontend::AgentTicketEmail'}->{'Subject'} =  '';
 $Self->{'Ticket::Frontend::AgentTicketEmail::CustomerIDReadOnly'} =  '1';
 $Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'FormDraft'} =  '1';
-$Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'IsVisibleForCustomerDefault'} =  '1';
+$Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'IsVisibleForCustomerDefault'} =  0;
 $Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'Permission'} =  'compose';
 $Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'RequiredLock'} =  '1';
 $Self->{'Ticket::Frontend::AgentTicketEmailOutbound'}->{'RichTextHeight'} =  '300';
@@ -7313,6 +7821,7 @@ $Self->{'Ticket::Frontend::AgentTicketZoom'}->{'Widgets'}->{'0200-CustomerInform
 $Self->{'Ticket::Frontend::AgentTicketZoom'}->{'Widgets'}->{'0300-LinkTable'} =  {
   'Module' => 'Kernel::Output::HTML::TicketZoom::LinkTable'
 };
+$Self->{'Ticket::Frontend::AgentZoomExpand'} =  0;
 $Self->{'Ticket::Frontend::Article::Actions'}->{'Chat'} =  {
   'AgentTicketCompose' => {
     'Module' => 'Kernel::Output::HTML::ArticleAction::AgentTicketCompose',
@@ -7577,6 +8086,7 @@ $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'AttributesView'} =  {
   'State' => '1',
   'Type' => '0'
 };
+$Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'CustomerZoomExpand'} =  0;
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'FollowUpDynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'HistoryComment'} =  '';
@@ -8065,6 +8575,7 @@ $Self->{'Ticket::SearchIndex::Filters'} =  [
   '^[\':.]|[\':.]$',
   '^[^\\w]+$'
 ];
+$Self->{'Ticket::SearchIndex::ForceUnfilteredStorage'} =  0;
 $Self->{'Ticket::SearchIndex::IndexArchivedTickets'} =  0;
 $Self->{'Ticket::SearchIndex::StopWords'}->{'de'} =  [
   'aber',
