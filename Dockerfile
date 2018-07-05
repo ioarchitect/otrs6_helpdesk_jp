@@ -1,5 +1,8 @@
-FROM centos:centos7
+FROM centos:latest
 MAINTAINER Tomohisa Hirami<hirami@io-architect.com>
+
+# ja_JP.UTF-8インストール
+RUN sed -i '/^override_install_langs/d' /etc/yum.conf && yum -y update && yum -y reinstall glibc-common
 
 # create users, set locales
 RUN useradd -m helpdesk && \
@@ -57,7 +60,7 @@ RUN yum install -y "perl(Crypt::Eksblowfish::Bcrypt)" && \
     yum install -y "perl-DateTime" 
 
 # RPMインストール
-ENV OTRS_RPM=otrs-6.0.7-01.noarch.rpm
+ENV OTRS_RPM=otrs-6.0.8-01.noarch.rpm
 RUN curl -o /$OTRS_RPM http://ftp.otrs.org/pub/otrs/RPMS/rhel/7/$OTRS_RPM && \
     yum install -y $OTRS_RPM && \
     rm /$OTRS_RPM

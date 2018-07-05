@@ -7,7 +7,7 @@ no warnings 'redefine'; ## no critic
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
-$Self->{'CurrentDeploymentID'} = '2';
+$Self->{'CurrentDeploymentID'} = '3';
 $Self->{'ACL::CacheTTL'} =  '3600';
 $Self->{'ACLKeysLevel1Change'} =  {
   'Possible' => 'Possible',
@@ -488,21 +488,28 @@ $Self->{'AgentCustomerUserInformationCenter::Backend'}->{'0600-CUIC-CustomerComp
   'Title' => 'Customer Information'
 };
 $Self->{'AgentLoginLogo'} =  {
-  'StyleHeight' => '70px',
+  'StyleHeight' => '60px',
   'URL' => 'skins/Agent/default/img/loginlogo_default.png'
 };
 $Self->{'AgentLogo'} =  {
   'StyleHeight' => '55px',
-  'StyleRight' => '29px',
-  'StyleTop' => '21px',
-  'StyleWidth' => '230px',
+  'StyleRight' => '24px',
+  'StyleTop' => '7px',
+  'StyleWidth' => '300px',
+  'URL' => 'skins/Agent/default/img/logo_bg.png'
+};
+$Self->{'AgentLogoCustom'}->{'highcontrast'} =  {
+  'StyleHeight' => '55px',
+  'StyleRight' => '24px',
+  'StyleTop' => '7px',
+  'StyleWidth' => '300px',
   'URL' => 'skins/Agent/default/img/logo_bg.png'
 };
 $Self->{'AgentLogoCustom'}->{'ivory'} =  {
   'StyleHeight' => '55px',
-  'StyleRight' => '29px',
-  'StyleTop' => '21px',
-  'StyleWidth' => '230px',
+  'StyleRight' => '24px',
+  'StyleTop' => '7px',
+  'StyleWidth' => '300px',
   'URL' => 'skins/Agent/default/img/logo_bg.png'
 };
 $Self->{'AgentLogoCustom'}->{'ivory-slim'} =  {
@@ -1815,7 +1822,7 @@ $Self->{'DashboardBackend'}->{'0260-TicketCalendar'} =  {
 };
 $Self->{'DashboardBackend'}->{'0270-TicketQueueOverview'} =  {
   'Block' => 'ContentLarge',
-  'CacheTTLLocal' => '0.5',
+  'CacheTTLLocal' => '2',
   'Default' => '1',
   'Description' => 'Provides a matrix overview of the tickets per state per queue',
   'Group' => '',
@@ -2294,6 +2301,7 @@ $Self->{'Frontend::CustomerUser::Item'}->{'15-OpenTickets'} =  {
   'Text' => 'Open tickets (customer)'
 };
 $Self->{'Frontend::DebugMode'} =  0;
+$Self->{'Frontend::Gravatar::ArticleDefaultImage'} =  'mm';
 $Self->{'Frontend::Gravatar::DefaultImage'} =  'mm';
 $Self->{'Frontend::HeaderMetaModule'}->{'100-Refresh'} =  {
   'Module' => 'Kernel::Output::HTML::HeaderMeta::Refresh'
