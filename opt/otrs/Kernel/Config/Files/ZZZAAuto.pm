@@ -7,7 +7,7 @@ no warnings 'redefine'; ## no critic
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
-$Self->{'CurrentDeploymentID'} = '3';
+$Self->{'CurrentDeploymentID'} = '4';
 $Self->{'ACL::CacheTTL'} =  '3600';
 $Self->{'ACLKeysLevel1Change'} =  {
   'Possible' => 'Possible',
@@ -97,6 +97,7 @@ $Self->{'ACLKeysLevel3::Actions'}->{'100-Default'} =  [
   'AgentTicketWatcher',
   'AgentTicketZoom',
   'AgentLinkObject',
+  'AgentSplitSelection',
   'CustomerTicketPrint',
   'CustomerTicketProcess',
   'CustomerTicketZoom'
@@ -4897,6 +4898,9 @@ $Self->{'Frontend::NotifyModule'}->{'7000-AgentTimeZone-Check'} =  {
 $Self->{'Frontend::NotifyModule'}->{'8000-Daemon-Check'} =  {
   'Module' => 'Kernel::Output::HTML::Notification::DaemonCheck'
 };
+$Self->{'Frontend::NotifyModule'}->{'8000-PackageManager-CheckNotVerifiedPackages'} =  {
+  'Module' => 'Kernel::Output::HTML::Notification::PackageManagerCheckNotVerifiedPackages'
+};
 $Self->{'Frontend::Output::FilterText'}->{'AAAURL'} =  {
   'Module' => 'Kernel::Output::HTML::FilterText::URL',
   'Templates' => {
@@ -5135,6 +5139,11 @@ $Self->{'LinkObject::ComplexTable::SettingsVisibility'}->{'Appointment'} =  [
 $Self->{'LinkObject::ComplexTable::SettingsVisibility'}->{'Ticket'} =  [
   'AgentTicketZoom'
 ];
+$Self->{'LinkObject::EventModulePost'}->{'9900-GenericInterface'} =  {
+  'Event' => '',
+  'Module' => 'Kernel::GenericInterface::Event::Handler',
+  'Transaction' => '1'
+};
 $Self->{'LinkObject::IgnoreLinkedTicketStateTypes'} =  [
   'merged',
   'removed'
@@ -6421,6 +6430,7 @@ $Self->{'PGP::Method'} =  'Detached';
 $Self->{'PGP::Options'} =  '--homedir /opt/otrs/.gnupg/ --batch --no-tty --yes';
 $Self->{'PGP::Options::DigestPreference'} =  'sha256';
 $Self->{'PGP::TrustedNetwork'} =  0;
+$Self->{'Package::AllowNotVerifiedPackages'} =  0;
 $Self->{'Package::EventModulePost'}->{'9000-SupportDataSend'} =  {
   'Event' => '(PackageInstall|PackageReinstall|PackageUpgrade|PackageUninstall)',
   'Module' => 'Kernel::System::Package::Event::SupportDataSend',
