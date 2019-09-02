@@ -7,7 +7,7 @@ no warnings 'redefine'; ## no critic
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
-$Self->{'CurrentDeploymentID'} = '4';
+$Self->{'CurrentDeploymentID'} = '5';
 $Self->{'ACL::CacheTTL'} =  '3600';
 $Self->{'ACLKeysLevel1Change'} =  {
   'Possible' => 'Possible',
@@ -273,14 +273,14 @@ $Self->{'AgentCustomerInformationCenter::Backend'}->{'0130-CIC-TicketOpen'} =  {
     'Title' => '2',
     'Type' => '1'
   },
-  'Description' => 'All open tickets, these tickets have already been worked on, but need a response',
+  'Description' => 'All open tickets, these tickets have already been worked on.',
   'Filter' => 'All',
   'Group' => '',
   'Limit' => '10',
   'Module' => 'Kernel::Output::HTML::Dashboard::TicketGeneric',
   'Permission' => 'ro',
   'Time' => 'Age',
-  'Title' => 'Open Tickets / Need to be answered'
+  'Title' => 'Open Tickets'
 };
 $Self->{'AgentCustomerInformationCenter::Backend'}->{'0500-CIC-CustomerIDStatus'} =  {
   'Attributes' => '',
@@ -470,14 +470,14 @@ $Self->{'AgentCustomerUserInformationCenter::Backend'}->{'0130-CUIC-TicketOpen'}
     'Title' => '2',
     'Type' => '1'
   },
-  'Description' => 'All open tickets, these tickets have already been worked on, but need a response',
+  'Description' => 'All open tickets, these tickets have already been worked on.',
   'Filter' => 'All',
   'Group' => '',
   'Limit' => '10',
   'Module' => 'Kernel::Output::HTML::Dashboard::TicketGeneric',
   'Permission' => 'ro',
   'Time' => 'Age',
-  'Title' => 'Open Tickets / Need to be answered'
+  'Title' => 'Open Tickets'
 };
 $Self->{'AgentCustomerUserInformationCenter::Backend'}->{'0600-CUIC-CustomerCompanyInformation'} =  {
   'Attributes' => '',
@@ -1173,7 +1173,7 @@ $Self->{'CustomerPreferences'} =  {
 $Self->{'CustomerPreferencesGroups'}->{'GoogleAuthenticatorSecretKey'} =  {
   'Active' => '0',
   'Block' => 'Input',
-  'Desc' => 'Enter your shared secret to enable two factor authentication.',
+  'Desc' => 'Enter your shared secret to enable two factor authentication. WARNING: Make sure that you add the shared secret to your generator application and the application works well. Otherwise you will be not able to login anymore without the two factor token.',
   'Key' => 'Shared Secret',
   'Label' => 'Google Authenticator',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
@@ -1925,6 +1925,8 @@ $Self->{'DefaultLanguage'} =  'ja';
 $Self->{'DefaultOverviewColumns'} =  {
   'Age' => '2',
   'Changed' => '1',
+  'Created' => '1',
+  'CustomerCompanyName' => '1',
   'CustomerID' => '2',
   'CustomerName' => '1',
   'CustomerUserID' => '1',
@@ -1975,14 +1977,17 @@ $Self->{'DefaultUsedLanguages'} =  {
   'id' => 'Indonesian',
   'it' => 'Italian',
   'ja' => 'Japanese',
+  'ko' => 'Korean',
   'lt' => 'Lithuanian',
   'lv' => 'Latvian',
+  'mk' => 'Macedonian',
   'ms' => 'Malay',
   'nb_NO' => 'Norwegian',
   'nl' => 'Dutch',
   'pl' => 'Polish',
   'pt' => 'Portuguese',
   'pt_BR' => 'Portuguese (Brasil)',
+  'ro' => 'Romanian',
   'ru' => 'Russian',
   'sk_SK' => 'Slovak',
   'sl' => 'Slovenian',
@@ -2024,14 +2029,17 @@ $Self->{'DefaultUsedLanguagesNative'} =  {
   'id' => 'Bahasa Indonesia',
   'it' => 'Italiano',
   'ja' => '日本語',
+  'ko' => '한국어',
   'lt' => 'Lietuvių kalba',
   'lv' => 'Latvijas',
+  'mk' => 'Mакедонски',
   'ms' => 'Melayu',
   'nb_NO' => 'Norsk bokmål',
   'nl' => 'Nederlandse',
   'pl' => 'Polski',
   'pt' => 'Português',
   'pt_BR' => 'Português Brasileiro',
+  'ro' => 'Română',
   'ru' => 'Русский',
   'sk_SK' => 'Slovenčina',
   'sl' => 'Slovenščina',
@@ -2809,7 +2817,7 @@ $Self->{'Frontend::Module'}->{'AdminQueueAutoResponse'} =  {
   ],
   'GroupRo' => [],
   'NavBarName' => 'Admin',
-  'Title' => 'Auto Responses ↔ Queues'
+  'Title' => 'Queues ↔ Auto Responses'
 };
 $Self->{'Frontend::Module'}->{'AdminQueueTemplates'} =  {
   'Description' => 'This module is part of the admin area of OTRS.',
@@ -2999,7 +3007,7 @@ $Self->{'Frontend::Module'}->{'AdminTemplateAttachment'} =  {
   ],
   'GroupRo' => [],
   'NavBarName' => 'Admin',
-  'Title' => 'Attachments ↔ Templates'
+  'Title' => 'Templates ↔ Attachments'
 };
 $Self->{'Frontend::Module'}->{'AdminType'} =  {
   'Description' => 'This module is part of the admin area of OTRS.',
@@ -4353,7 +4361,7 @@ $Self->{'Frontend::NavigationModule'}->{'AdminCustomerUser'} =  {
   'IconBig' => 'fa-male',
   'IconSmall' => '',
   'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
-  'Name' => 'Customer User'
+  'Name' => 'Customer Users'
 };
 $Self->{'Frontend::NavigationModule'}->{'AdminCustomerUserCustomer'} =  {
   'Block' => 'Users',
@@ -4594,7 +4602,7 @@ $Self->{'Frontend::NavigationModule'}->{'AdminQueueAutoResponse'} =  {
   'IconBig' => 'fa-reply',
   'IconSmall' => 'fa-folder',
   'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
-  'Name' => 'Auto Responses ↔ Queues'
+  'Name' => 'Queues ↔ Auto Responses'
 };
 $Self->{'Frontend::NavigationModule'}->{'AdminQueueTemplates'} =  {
   'Block' => 'Ticket',
@@ -4814,7 +4822,7 @@ $Self->{'Frontend::NavigationModule'}->{'AdminTemplate'} =  {
 };
 $Self->{'Frontend::NavigationModule'}->{'AdminTemplateAttachment'} =  {
   'Block' => 'Ticket',
-  'Description' => 'Link attachments to templates.',
+  'Description' => 'Link templates to attachments.',
   'Group' => [
     'admin'
   ],
@@ -4822,7 +4830,7 @@ $Self->{'Frontend::NavigationModule'}->{'AdminTemplateAttachment'} =  {
   'IconBig' => 'fa-paperclip',
   'IconSmall' => 'fa-file-text-o',
   'Module' => 'Kernel::Output::HTML::NavBar::ModuleAdmin',
-  'Name' => 'Attachments ↔ Templates'
+  'Name' => 'Templates ↔ Attachments'
 };
 $Self->{'Frontend::NavigationModule'}->{'AdminType'} =  {
   'Block' => 'Ticket',
@@ -5212,7 +5220,7 @@ $Self->{'Loader::Agent::CommonJS'}->{'000-Framework'} =  [
   'thirdparty/jquery-ui-touch-punch-0.2.3/jquery.ui.touch-punch.js',
   'thirdparty/jquery-validate-1.16.0/jquery.validate.js',
   'thirdparty/jquery-pubsub/pubsub.js',
-  'thirdparty/jquery-jstree-3.3.4/jquery.jstree.js',
+  'thirdparty/jquery-jstree-3.3.7/jquery.jstree.js',
   'thirdparty/nunjucks-3.0.1/nunjucks.js',
   'Core.Init.js',
   'Core.JavaScriptEnhancements.js',
@@ -5313,7 +5321,7 @@ $Self->{'Loader::Customer::CommonJS'}->{'000-Framework'} =  [
   'thirdparty/jquery-validate-1.16.0/jquery.validate.js',
   'thirdparty/jquery-ui-1.12.1/jquery-ui.js',
   'thirdparty/jquery-pubsub/pubsub.js',
-  'thirdparty/jquery-jstree-3.3.4/jquery.jstree.js',
+  'thirdparty/jquery-jstree-3.3.7/jquery.jstree.js',
   'thirdparty/nunjucks-3.0.1/nunjucks.js',
   'Core.Init.js',
   'Core.Debug.js',
@@ -5639,6 +5647,11 @@ $Self->{'Loader::Module::AdminNotificationEvent'}->{'002-Ticket'} =  {
 $Self->{'Loader::Module::AdminOTRSBusiness'}->{'001-Framework'} =  {
   'CSS' => [
     'Core.Agent.Admin.OTRSBusiness.css'
+  ]
+};
+$Self->{'Loader::Module::AdminPGP'}->{'001-Framework'} =  {
+  'JavaScript' => [
+    'Core.Agent.Admin.PGP.js'
   ]
 };
 $Self->{'Loader::Module::AdminPackageManager'}->{'001-Framework'} =  {
@@ -5995,6 +6008,7 @@ $Self->{'Loader::Module::AgentPreferences'}->{'001-Framework'} =  {
     'Core.UI.AllocationList.js',
     'Core.Agent.TableFilters.js',
     'Core.Agent.Preferences.js',
+    'Core.Agent.SharedSecretGenerator.js',
     'Core.SystemConfiguration.js',
     'Core.SystemConfiguration.Date.js'
   ]
@@ -6443,7 +6457,7 @@ $Self->{'Package::EventModulePost'}->{'9900-GenericInterface'} =  {
 };
 $Self->{'Package::FileUpload'} =  '1';
 $Self->{'Package::RepositoryRoot'} =  [
-  'http://ftp.otrs.org/pub/otrs/misc/packages/repository.xml'
+  'https://ftp.otrs.org/pub/otrs/misc/packages/repository.xml'
 ];
 $Self->{'Package::ShowFeatureAddons'} =  '1';
 $Self->{'Package::Timeout'} =  '120';
@@ -6526,6 +6540,7 @@ $Self->{'PostmasterX-Header'} =  [
   'In-Reply-To',
   'Auto-Submitted',
   'X-Loop',
+  'X-Spam',
   'X-Spam-Flag',
   'X-Spam-Level',
   'X-Spam-Score',
@@ -6687,7 +6702,7 @@ $Self->{'PreferencesGroups'}->{'DynamicFieldsOverviewPageShown'} =  {
 $Self->{'PreferencesGroups'}->{'GoogleAuthenticatorSecretKey'} =  {
   'Active' => '0',
   'Block' => 'Input',
-  'Desc' => 'Enter your shared secret to enable two factor authentication.',
+  'Desc' => 'Enter your shared secret to enable two factor authentication. WARNING: Make sure that you add the shared secret to your generator application and the application works well. Otherwise you will be not able to login anymore without the two factor token.',
   'Key' => 'Shared Secret',
   'Label' => 'Google Authenticator',
   'Module' => 'Kernel::Output::HTML::Preferences::Generic',
@@ -8028,6 +8043,7 @@ $Self->{'Ticket::Frontend::ArticleComposeModule'}->{'3-CryptEmail'} =  {
   'Module' => 'Kernel::Output::HTML::ArticleCompose::Crypt',
   'ParamType' => 'Multiple'
 };
+$Self->{'Ticket::Frontend::ArticleHeadVisibleDefault'} =  0;
 $Self->{'Ticket::Frontend::ArticlePreViewModule'}->{'1-PGP'} =  {
   'Module' => 'Kernel::Output::HTML::ArticleCheck::PGP'
 };
@@ -8042,6 +8058,7 @@ $Self->{'Ticket::Frontend::ArticleViewModule'}->{'1-SMIME'} =  {
 };
 $Self->{'Ticket::Frontend::AutomaticMergeSubject'} =  'Ticket Merged';
 $Self->{'Ticket::Frontend::AutomaticMergeText'} =  'Merged Ticket <OTRS_TICKET> to <OTRS_MERGE_TO_TICKET>.';
+$Self->{'Ticket::Frontend::BlockLoadingRemoteContent'} =  0;
 $Self->{'Ticket::Frontend::BounceText'} =  'Your email with ticket number "<OTRS_TICKET>" is bounced to "<OTRS_BOUNCE_TO>". Contact this address for further information.';
 $Self->{'Ticket::Frontend::BulkAccountedTime'} =  '1';
 $Self->{'Ticket::Frontend::BulkFeature'} =  '1';
@@ -8105,6 +8122,8 @@ $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'AttributesView'} =  {
   'Type' => '0'
 };
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'CustomerZoomExpand'} =  0;
+$Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'DefaultAgentName'} =  'Support Agent';
+$Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'DisplayNoteFrom'} =  'FromField';
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'DynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'FollowUpDynamicField'} =  {};
 $Self->{'Ticket::Frontend::CustomerTicketZoom'}->{'HistoryComment'} =  '';
@@ -8536,6 +8555,8 @@ $Self->{'Ticket::Frontend::ZoomCustomerTickets'} =  0;
 $Self->{'Ticket::Frontend::ZoomExpand'} =  0;
 $Self->{'Ticket::Frontend::ZoomExpandSort'} =  'reverse';
 $Self->{'Ticket::Frontend::ZoomRichTextForce'} =  '1';
+$Self->{'Ticket::GenericAgentAllowCustomModuleExecution'} =  '1';
+$Self->{'Ticket::GenericAgentAllowCustomScriptExecution'} =  '1';
 $Self->{'Ticket::GenericAgentRunLimit'} =  '4000';
 $Self->{'Ticket::GenericAgentTicketSearch'}->{'ExtendedSearchCondition'} =  '1';
 $Self->{'Ticket::Hook'} =  'Ticket#';
