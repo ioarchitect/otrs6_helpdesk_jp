@@ -7,7 +7,7 @@ no warnings 'redefine'; ## no critic
 use utf8;
 sub Load {
     my ($File, $Self) = @_;
-$Self->{'CurrentDeploymentID'} = '5';
+$Self->{'CurrentDeploymentID'} = '6';
 $Self->{'ACL::CacheTTL'} =  '3600';
 $Self->{'ACLKeysLevel1Change'} =  {
   'Possible' => 'Possible',
@@ -68,7 +68,9 @@ $Self->{'ACLKeysLevel2::PropertiesDatabase'} =  {
   'User' => 'User'
 };
 $Self->{'ACLKeysLevel3::Actions'}->{'100-Default'} =  [
+  'AgentAppointmentCalendarOverview',
   'AgentTicketBounce',
+  'AgentTicketBulk',
   'AgentTicketClose',
   'AgentTicketCompose',
   'AgentTicketCustomer',
@@ -2059,6 +2061,7 @@ $Self->{'DefaultViewNewLine'} =  '90';
 $Self->{'DemoSystem'} =  0;
 $Self->{'DisableContentSecurityPolicy'} =  0;
 $Self->{'DisableIFrameOriginRestricted'} =  0;
+$Self->{'DisableLoginAutocomplete'} =  0;
 $Self->{'DynamicField::EventModulePost'}->{'9900-GenericInterface'} =  {
   'Event' => '',
   'Module' => 'Kernel::GenericInterface::Event::Handler',
@@ -2293,7 +2296,7 @@ $Self->{'Frontend::CustomerUser::Item'}->{'1-GoogleMaps'} =  {
   'Required' => 'UserStreet;UserCity;',
   'Target' => '_blank',
   'Text' => 'Location',
-  'URL' => 'http://maps.google.com/maps?z=7&q='
+  'URL' => 'https://maps.google.com/maps?z=7&q='
 };
 $Self->{'Frontend::CustomerUser::Item'}->{'15-OpenTickets'} =  {
   'Action' => 'AgentTicketSearch',
@@ -2310,8 +2313,8 @@ $Self->{'Frontend::CustomerUser::Item'}->{'15-OpenTickets'} =  {
   'Text' => 'Open tickets (customer)'
 };
 $Self->{'Frontend::DebugMode'} =  0;
-$Self->{'Frontend::Gravatar::ArticleDefaultImage'} =  'mm';
-$Self->{'Frontend::Gravatar::DefaultImage'} =  'mm';
+$Self->{'Frontend::Gravatar::ArticleDefaultImage'} =  'mp';
+$Self->{'Frontend::Gravatar::DefaultImage'} =  'mp';
 $Self->{'Frontend::HeaderMetaModule'}->{'100-Refresh'} =  {
   'Module' => 'Kernel::Output::HTML::HeaderMeta::Refresh'
 };
@@ -5214,7 +5217,7 @@ $Self->{'Loader::Agent::CommonCSS'}->{'001-Daemon'} =  [
   'Core.Agent.Daemon.css'
 ];
 $Self->{'Loader::Agent::CommonJS'}->{'000-Framework'} =  [
-  'thirdparty/jquery-3.2.1/jquery.js',
+  'thirdparty/jquery-3.4.1/jquery.js',
   'thirdparty/jquery-browser-detection/jquery-browser-detection.js',
   'thirdparty/jquery-ui-1.12.1/jquery-ui.js',
   'thirdparty/jquery-ui-touch-punch-0.2.3/jquery.ui.touch-punch.js',
@@ -5316,7 +5319,7 @@ $Self->{'Loader::Customer::CommonCSS'}->{'000-Framework'} =  [
   'Core.Animations.css'
 ];
 $Self->{'Loader::Customer::CommonJS'}->{'000-Framework'} =  [
-  'thirdparty/jquery-3.2.1/jquery.js',
+  'thirdparty/jquery-3.4.1/jquery.js',
   'thirdparty/jquery-browser-detection/jquery-browser-detection.js',
   'thirdparty/jquery-validate-1.16.0/jquery.validate.js',
   'thirdparty/jquery-ui-1.12.1/jquery-ui.js',

@@ -57,10 +57,14 @@ RUN yum install -y "perl(Crypt::Eksblowfish::Bcrypt)" && \
     yum install -y "perl(ModPerl::Util)" && \
     yum install -y "perl(Text::CSV_XS)" && \
     yum install -y "perl(YAML::XS)" && \
-    yum install -y "perl-DateTime" 
+    yum install -y "perl-DateTime" && \
+    yum install -y perl-namespace-clean
+
+RUN yum -y install https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release.rpm && \
+    yum install -y perl-Moo
 
 # RPMインストール
-ENV OTRS_RPM=otrs-6.0.22-01.noarch.rpm
+ENV OTRS_RPM=otrs-6.0.27-02.noarch.rpm
 RUN curl -o /$OTRS_RPM https://ftp.otrs.org/pub/otrs/RPMS/rhel/7/$OTRS_RPM && \
     yum install -y $OTRS_RPM && \
     rm /$OTRS_RPM
