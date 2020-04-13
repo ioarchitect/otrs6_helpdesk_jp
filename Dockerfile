@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7
 MAINTAINER Tomohisa Hirami<hirami@io-architect.com>
 
 # ja_JP.UTF-8インストール
