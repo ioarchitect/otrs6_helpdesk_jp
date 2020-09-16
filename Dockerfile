@@ -64,7 +64,7 @@ RUN yum -y install https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release.rpm 
     yum install -y perl-Moo
 
 # RPMインストール
-ENV OTRS_RPM=otrs-6.0.27-02.noarch.rpm
+ENV OTRS_RPM=otrs-6.0.29-02.noarch.rpm
 RUN curl -o /$OTRS_RPM https://ftp.otrs.org/pub/otrs/RPMS/rhel/7/$OTRS_RPM && \
     yum install -y $OTRS_RPM && \
     rm /$OTRS_RPM
